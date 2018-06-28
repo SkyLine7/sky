@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="/common/layout"
+      lang="en">
+    <head>
+        <css data-layout-fragment="extendcss">
+            <title>页面a</title>
+        </css>
+    </head>
+    <body>
+        <div data-layout-fragment="page-container">
+            <h1>a Page</h1>
+            <input type="file" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" id="myFile" onchange="uploadFile(this);"/>
+
+            <div class="form-group">
+                <strong class="col-sm-4 control-label no-padding-right" for="enterType">招标公告编辑区域:</strong>
+            </div>
+
+            <div class="form-group">
+                <div id="editor">
+                    <h3 style="text-align: center;">中标通知书</h3>
+                    <p>致 <label><b>${供方单位}:</b></label></p>
+                    <p>经过<b>${招标项目名称}</b>招标小组的认真评审，确定贵公司为<b>${招标项目名称}</b>的中标人，主要中标条件如下：</p>
+                    <ul style="list-style-type: none;">
+                        <li>中标价：人民币(大写)<b>${中标金额大写}</b>元整（小写）#：<b>${中标金额}</b>元。</li>
+                    </ul>
+                    <h4 style="text-align: right;">
+                        上海项目部：张山
+                    </h4>
+                </div>
+                <p>手动触发 onchange 函数执行</p>
+                <button id="btn1">change</button>
+                <button type="button" id="submit">提交中标通知书</button>
+            </div>
+
+        </div>
+        <extendscript data-layout-fragment="extendscript">
+            <script type="text/javascript" src="/assets/js/plugin/wangEditor/wangEditor.min.js"></script>
+            <script type="text/javascript" src="/assets/js/test/a.js"></script>
+        </extendscript>
+    </body>
+</html>

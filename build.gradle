@@ -1,0 +1,56 @@
+group = 'com.panda'
+version = '0.0.1-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+
+buildscript {
+	ext {
+		springBootVersion = '1.5.14.RELEASE'
+	}
+	repositories {
+		maven{ url"http://maven.aliyun.com/nexus/content/groups/public"}
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+repositories {
+	maven{ url"http://maven.aliyun.com/nexus/content/groups/public"}
+	maven{ url"http://mvn.gt.igexin.com/nexus/content/repositories/releases/"}
+}
+
+
+bootRun {
+	addResources = true
+}
+
+dependencies {
+	compile fileTree(dir: 'lib',include:['*.jar'])  //本地jar,备用
+	compile('org.springframework.boot:spring-boot-starter-activemq')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-data-redis')
+	compile('org.springframework.boot:spring-boot-starter-freemarker')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-tomcat')
+	compile('org.springframework.boot:spring-boot-starter-websocket')
+	compile('org.springframework.session:spring-session')
+	compile('org.springframework.boot:spring-boot-configuration-processor')
+	compile('com.alibaba:fastjson:1.2.31')
+	compile('commons-httpclient:commons-httpclient:3.1')
+	compile('commons-codec:commons-codec:1.10')
+	compile('org.apache.httpcomponents:httpclient:4.4.1')
+	compile('com.alibaba:druid:1.0.18')
+	compile('mysql:mysql-connector-java:6.0.5')
+	compile('org.apache.poi:poi:3.17')
+	compile('org.apache.poi:poi-ooxml:3.17')
+	providedCompile('javax.servlet:javax.servlet-api:3.1.0')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+
+}
