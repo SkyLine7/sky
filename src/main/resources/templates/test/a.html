@@ -5,9 +5,7 @@
       layout:decorator="/common/layout"
       lang="en">
     <head>
-        <css data-layout-fragment="extendcss">
-            <title>页面a</title>
-        </css>
+        <title data-layout-fragment="t">页面a</title>
     </head>
     <body>
         <div data-layout-fragment="page-container">
@@ -33,6 +31,7 @@
                 <p>手动触发 onchange 函数执行</p>
                 <button id="btn1">change</button>
                 <button type="button" id="submit">提交中标通知书</button>
+                <button type="button" id="downloadWord" onclick="toDownloadWord(this);">html转word</button>
             </div>
 
         </div>

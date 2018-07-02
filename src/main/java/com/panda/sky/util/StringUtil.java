@@ -1,5 +1,6 @@
 package com.panda.sky.util;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -231,7 +232,7 @@ public class StringUtil {
     			retStr.append(strTemp.substring((i * maxSize), (i * maxSize + maxSize)));
     		}
     		else {
-    			retStr.append(strTemp.substring((i * maxSize), (i * maxSize + maxSize))).append(Constants.HTML_BR);
+    			retStr.append(strTemp.substring((i * maxSize), (i * maxSize + maxSize))).append("<br/>");
     		}
 		}
     	if(retMod != 0) {
@@ -240,4 +241,27 @@ public class StringUtil {
     	
     	return retStr.toString();
     }
+
+	/**
+	 * 解决设置名称时的乱码导致无后缀名的情况
+	 * @param request
+	 * @param fileName
+	 * @return
+	 */
+	public static String processFileName(HttpServletRequest request, String fileName) {
+		String codedFileName = "";
+		try {
+			String agent = request.getHeader("USER-AGENT");
+			if (null != agent && -1 != agent.indexOf("MSIE") || null != agent
+					&& -1 != agent.indexOf("Trident")) {// ie
+				String name = java.net.URLEncoder.encode(fileName, "UTF8");
+				codedFileName = name;
+			} else if (null != agent && -1 != agent.indexOf("Mozilla")) {// 火狐,chrome等
+				codedFileName = new String(fileName.getBytes("UTF-8"), "iso-8859-1");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return codedFileName;
+	}
 }

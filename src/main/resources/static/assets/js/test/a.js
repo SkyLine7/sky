@@ -103,3 +103,16 @@ function sendToRemote() {
         }
     });
 }
+
+
+function toDownloadWord(obj){
+    let content =  '<h3 style="text-align: center;">中标通知书</h3> <p>致 <label><b>所说的发公司:</b></label></p>';
+        content += '<p>经过<b>斯科拉广告</b>招标小组的认真评审，确定贵公司为<b>斯诺克的感觉项目</b>的中标人，主要中标条件如下：</p>';
+        content += '<ul style="list-style-type: none;">';
+        content += '    <li>中标价：人民币(大写)<b>777</b>元整（小写）#：<b>999</b>元。</li>';
+        content += '</ul>';
+        content += '<h4 style="text-align: right;">';
+        content += '上海项目部：张山';
+        content += '</h4>';
+    window.location.href = "/document/downloadDocx.html?jsonData="+content;
+}
