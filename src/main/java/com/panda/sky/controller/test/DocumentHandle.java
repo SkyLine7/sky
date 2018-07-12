@@ -23,4 +23,9 @@ public class DocumentHandle extends BaseController{
 		String htmlContent = "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"></meta>\n</head>\"\n<body>"+jsonData+"</body></html>";
 		DocumentUtil.inputStreamToWord(htmlContent,request,response);
 	}
+
+	@RequestMapping(value = "/downloadDocxx.html",method = {RequestMethod.GET,RequestMethod.POST})
+	public void downloadDocxx(HttpServletRequest request, HttpServletResponse response, String jsonData){
+
+	}
 }
