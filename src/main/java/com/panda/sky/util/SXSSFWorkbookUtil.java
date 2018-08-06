@@ -167,18 +167,32 @@ public class SXSSFWorkbookUtil {
 			sheet.setColumnWidth(ii,arrColWidth[ii] * 256);
 			ii++;
 		}
+
+		//表头 rowIndex=0
+		SXSSFRow titleRow = sheet.createRow(0);
+		titleRow.createCell(0).setCellValue(title);
+		titleRow.getCell(0).setCellStyle(titleStyle);
+		sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, headMap.size() - 1));
+
+		//列头 rowIndex =1
+		SXSSFRow headerRow = sheet.createRow(1);
+		for(int i=0;i<headers.length;i++) {
+			headerRow.createCell(i).setCellValue(headers[i]);
+			headerRow.getCell(i).setCellStyle(headerStyle);
+		}
+
 		// 遍历集合数据，产生数据行
 		int rowIndex = 0;
 		for (Object obj : jsonArray) {
 			if(rowIndex == 65535 || rowIndex == 0){
-				if (rowIndex != 0) sheet = (SXSSFSheet)workbook.createSheet("第二个sheet");//如果数据超过了，则在第二页显示
+				if (rowIndex != 0) sheet = workbook.createSheet("第二个sheet");//如果数据超过了，则在第二页显示
 
-				SXSSFRow titleRow = (SXSSFRow)sheet.createRow(0);//表头 rowIndex=0
+				//SXSSFRow titleRow = sheet.createRow(0);//表头 rowIndex=0
 				titleRow.createCell(0).setCellValue(title);
 				titleRow.getCell(0).setCellStyle(titleStyle);
 				sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, headMap.size() - 1));
 
-				SXSSFRow headerRow = (SXSSFRow)sheet.createRow(1); //列头 rowIndex =1
+				//SXSSFRow headerRow = sheet.createRow(1); //列头 rowIndex =1
 				for(int i=0;i<headers.length;i++) {
 					headerRow.createCell(i).setCellValue(headers[i]);
 					headerRow.getCell(i).setCellStyle(headerStyle);

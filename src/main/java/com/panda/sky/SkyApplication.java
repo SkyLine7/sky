@@ -11,8 +11,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * springboot 启动类: 继承SpringBootServletInitializer重写configure方法,去除内嵌的tomcat
  * @author pcongda
  */
-@SpringBootApplication
-@EnableScheduling //启用springboot计划任务
+@SpringBootApplication //标识Springboot 启动类
+@EnableScheduling //启用Springboot计划任务(定时任务)
 @EnableJpaRepositories(basePackages = "com.panda.sky.repository") //指定springdatajpa 基础包位置
 public class SkyApplication extends SpringBootServletInitializer{
 

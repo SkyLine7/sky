@@ -244,6 +244,7 @@ public class StringUtil {
 
 	/**
 	 * 解决设置名称时的乱码导致无后缀名的情况
+	 * @author pcongda
 	 * @param request
 	 * @param fileName
 	 * @return
@@ -252,11 +253,13 @@ public class StringUtil {
 		String codedFileName = "";
 		try {
 			String agent = request.getHeader("USER-AGENT");
+			// ie
 			if (null != agent && -1 != agent.indexOf("MSIE") || null != agent
-					&& -1 != agent.indexOf("Trident")) {// ie
+					&& -1 != agent.indexOf("Trident")) {
 				String name = java.net.URLEncoder.encode(fileName, "UTF8");
 				codedFileName = name;
-			} else if (null != agent && -1 != agent.indexOf("Mozilla")) {// 火狐,chrome等
+				// 火狐,chrome等
+			} else if (null != agent && -1 != agent.indexOf("Mozilla")) {
 				codedFileName = new String(fileName.getBytes("UTF-8"), "iso-8859-1");
 			}
 		} catch (Exception e) {

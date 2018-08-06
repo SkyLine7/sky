@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * xss 过滤
+ * xss 过滤器
  * @author pcongda
  * @version 1.0
  */
